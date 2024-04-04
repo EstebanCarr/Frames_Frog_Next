@@ -5,6 +5,8 @@ import { devtools } from 'frog/dev'
 // import { neynar } from 'frog/hubs'
 import { handle } from 'frog/next'
 import { serveStatic } from 'frog/serve-static'
+import { use } from 'hono/jsx'
+import { useParams } from 'next/navigation'
 
 const app = new Frog({
   assetsPath: '/',
@@ -18,6 +20,8 @@ const app = new Frog({
 
 app.frame('/', (c) => {
 
+  const { frameData } = c
+  const { castId, fid, messageHash, network, timestamp, url } = frameData
 
   return c.res({
     action:'/picker',
@@ -31,7 +35,13 @@ app.frame('/', (c) => {
 
 app.frame('/picker', (c) => {
   const  { buttonValue }= c
+  const userData = c.frameData?.castId
+  
+ console.log(userData);
+ 
+  
   if (buttonValue==='A') {
+    
     return c.res({
       action: '/meme/a',
       image:`${process.env.NEXT_PUBLIC_SITE_URL}/meme/a`,
@@ -53,10 +63,11 @@ app.frame('/picker', (c) => {
     ],
   })
 })
-
+// memes 
 app.frame('/meme/:id', (c) => {
   const id = c.req.param('id')
   const {inputText = ''} = c
+
   const newSearchParams = new URLSearchParams({
     text:inputText,
   })
@@ -74,9 +85,9 @@ app.frame('/meme/:id', (c) => {
     intents:[ <Button >Regersar 🎆</Button>,]
     
   })
-  
-  
 } )
+
+
 devtools(app, { serveStatic })
 
 export const GET = handle(app)
