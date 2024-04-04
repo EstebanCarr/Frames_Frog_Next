@@ -11,6 +11,7 @@ import { useParams } from 'next/navigation'
 const app = new Frog({
   assetsPath: '/',
   basePath: '/api',
+  verify: 'silent'
   // Supply a Hub to enable frame verification.
 
 })
@@ -21,7 +22,6 @@ const app = new Frog({
 app.frame('/', (c) => {
 
   const { frameData } = c
-  const { castId, fid, messageHash, network, timestamp, url } = frameData
 
   return c.res({
     action:'/picker',
@@ -36,9 +36,17 @@ app.frame('/', (c) => {
 app.frame('/picker', (c) => {
   const  { buttonValue }= c
   const userData = c.frameData?.castId
+  if (!userData) {
+    
+    return c.res({
+      action: '/error',
+      image:`${process.env.NEXT_PUBLIC_SITE_URL}/error.PNG`,
+      intents: [
+        <Button >Regersar 🎆</Button>
   
- console.log(userData);
- 
+      ],
+    })
+  }
   
   if (buttonValue==='A') {
     
