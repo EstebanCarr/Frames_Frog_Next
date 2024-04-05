@@ -60,7 +60,8 @@ app.frame('/picker', (c) => {
   
       ],
     })
-  }else if (buttonValue==='b') {
+  }
+  if (buttonValue==='B') {
     
   return c.res({
     action: '/meme/b',
