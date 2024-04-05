@@ -29,12 +29,13 @@ app.frame('/', (c) => {
     intents: [
       <Button value="A">A</Button>,
       <Button value="B">B</Button>,
+      <Button value="c">Useer Data</Button>,
     ],
   })
 })
 
 app.frame('/picker', (c) => {
-  const  { buttonValue }= c
+  const  { buttonValue,status }= c
   const userData = c.frameData?.castId
   if (!userData) {
     
@@ -59,7 +60,8 @@ app.frame('/picker', (c) => {
   
       ],
     })
-  }
+  }else if (buttonValue==='b') {
+    
   return c.res({
     action: '/meme/b',
     image:`${process.env.NEXT_PUBLIC_SITE_URL}/meme/b`,
@@ -70,6 +72,22 @@ app.frame('/picker', (c) => {
 
     ],
   })
+}
+return c.res({
+  action: '/',
+  image: (
+    <div style={{ color: 'white', display: 'flex', fontSize: 60 }}>
+      {status === 'initial' ? ('user Data!') : (`Fid:
+      ${userData.fid},
+      Addres
+      ${userData.hash}`)}
+    </div>
+  ),
+  intents: [
+    <Button >Regersar 🎆</Button>
+
+  ],
+})
 })
 // memes 
 app.frame('/meme/:id', (c) => {
