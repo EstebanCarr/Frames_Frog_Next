@@ -5,7 +5,7 @@ import { devtools } from 'frog/dev'
 // import { neynar } from 'frog/hubs'
 import { handle } from 'frog/next'
 import { serveStatic } from 'frog/serve-static'
-import { use } from 'hono/jsx'
+
 import { useParams } from 'next/navigation'
 
 const app = new Frog({
