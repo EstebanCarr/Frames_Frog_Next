@@ -77,17 +77,16 @@ app.frame('/picker', (c) => {
 return c.res({
   action: '/',
   image: (
-    <div style={{ color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: 24 }}>
-      <div style={{ marginBottom: 20 }}>
-        {status === 'initial' ? 'User Data!' : `Fid: ${userData.fid}, Address: ${userData.hash}`}
-      </div>
-
-      <h1 style={{ marginBottom: 20 }}>a</h1>
-      <img src="/meme/a" alt="" />
+    <div style={{ color: 'white', display: 'flex', fontSize: 60 }}>
+      {status === 'initial' ? ('user Data!') : (`Fid:
+      ${userData.fid},
+      Addres
+      ${userData.hash}`)}
     </div>
   ),
   intents: [
-    <Button>Regresar 🎆</Button>
+    <Button >Regersar 🎆</Button>
+
   ],
 })
 })

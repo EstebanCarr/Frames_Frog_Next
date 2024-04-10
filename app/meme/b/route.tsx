@@ -1,21 +1,23 @@
-import { ImageResponse } from 'next/og';
-import { generateRandomImage } from '../../../utils/test-scrip';
+import { ImageResponse } from 'next/og'
+// App router includes @vercel/og.
+// No need to install it.
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
+  const { searchParams } = new URL(request.url)
 
-  const hasText = searchParams.has('text');
-  const text = hasText ? searchParams.get('text')?.slice(0, 100) : '';
+  const hasText = searchParams.has('text')
+  const text = hasText ? searchParams.get('text')?.slice(0, 100) : ''
 
-  const imageData = generateRandomImage(100, 100); // Genera la imagen aleatoria
+  const imageData = await fetch(
+    new URL('./meme-kevin.jpg', import.meta.url)
+  ).then((res) => res.arrayBuffer())
 
   const fontData = await fetch(
     new URL('../../../assets/Oswald-Bold.ttf', import.meta.url)
-  ).then((res) => res.arrayBuffer());
+  ).then((res) => res.arrayBuffer())
 
-  // Devuelve la respuesta de la imagen con el texto superpuesto
   return new ImageResponse(
     (
       <div
@@ -30,6 +32,7 @@ export async function GET(request: Request) {
           position: 'relative',
         }}
       >
+        {/* @ts-ignore */}
         <img width="630" height="630" alt="meme" src={imageData} />
         <p
           style={{
@@ -61,5 +64,5 @@ export async function GET(request: Request) {
         },
       ],
     }
-  );
+  )
 }
