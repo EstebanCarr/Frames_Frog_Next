@@ -5,7 +5,8 @@ import { devtools } from 'frog/dev'
 // import { neynar } from 'frog/hubs'
 import { handle } from 'frog/next'
 import { serveStatic } from 'frog/serve-static'
-
+import FrameData from '@/models/FreameData';
+import axios from 'axios'; 
 import { useParams } from 'next/navigation'
 
 const app = new Frog({
@@ -34,7 +35,7 @@ app.frame('/', (c) => {
   })
 })
 
-app.frame('/picker', (c) => {
+app.frame('/picker', async (c) => {
   const  { buttonValue,status }= c
   const userData = c.frameData?.castId
   if (!userData) {
@@ -73,6 +74,18 @@ app.frame('/picker', (c) => {
 
     ],
   })
+}
+if (buttonValue === 'c') {
+  // Si los datos de usuario están disponibles
+  if (userData) {
+    // Enviar los datos de usuario a la ruta API para guardar en MongoDB
+    try {
+      await axios.post('/api/saveUserData', { userData });
+      console.log('Datos de usuario enviados correctamente a MongoDB.');
+    } catch (error) {
+      console.error('Error al enviar datos de usuario a MongoDB:', error);
+    }
+  }
 }
 return c.res({
   action: '/',
