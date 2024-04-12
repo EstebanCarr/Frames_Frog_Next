@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     // Establecer la conexión a la base de datos
-    const con = await dbConnect();
+    await dbConnect();
     
     // Operación de base de datos simulada (por ejemplo, obtener datos)
     const data = await obtenerDatosDeLaBaseDeDatos();
@@ -15,12 +15,13 @@ export async function GET() {
     // Cerrar la conexión a la base de datos
     await disconnect();
     
-    // Retornar una respuesta
-    return new NextResponse("Operación completada exitosamente y conexión cerrada");
+    // Retornar una respuesta exitosa con los datos obtenidos
+    return new NextResponse("Operación completada exitosamente y conexión cerrada", { status: 200 });
   } catch (error) {
     // Manejar cualquier error que pueda ocurrir durante la conexión o las operaciones de base de datos
     console.error("Error durante la conexión a la base de datos:", error);
-    return new NextResponse("Error durante la conexión a la base de datos");
+    // Retornar una respuesta de error
+    return new NextResponse("Error durante la conexión a la base de datos", { status: 500 });
   }
 }
 

@@ -12,7 +12,6 @@ export async function dbConnect() {
       return global.mongoose.conn;
     } else {
       const conString = process.env.MONGO_URL;
-
       const promise = mongoose.connect(conString, {
         autoIndex: true,
       });
