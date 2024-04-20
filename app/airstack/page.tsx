@@ -1,9 +1,8 @@
 'use client'
 import { gql, GraphQLClient } from 'graphql-request';
 import { useState, useEffect } from 'react';
-import { init, useQuery } from "@airstack/airstack-react";
 const AIRSTACK_API_URL = 'https://api.airstack.xyz/graphql';
-const AIRSTACK_API_KEY = process.env.AIRSTACK_API_KEY;
+const AIRSTACK_API_KEY = process.env.NEXT_PUBLIC_AIRSTACK_API_KEY;
 
 const query = gql`
   query MyQuery {
@@ -19,10 +18,6 @@ const query = gql`
 
 
 interface WalletData {
-  socials: {
-    dappName: string;
-    profileName: string;
-  }[];
   addresses: string[];
 }
 
