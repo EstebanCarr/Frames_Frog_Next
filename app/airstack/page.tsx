@@ -1,61 +1,52 @@
 'use client'
-import { gql, GraphQLClient } from 'graphql-request';
-import { useState, useEffect } from 'react';
-const AIRSTACK_API_URL = 'https://api.airstack.xyz/graphql';
-const AIRSTACK_API_KEY = process.env.NEXT_PUBLIC_AIRSTACK_API_KEY;
-
-const query = gql`
-  query MyQuery {
-    Wallet(input: { identity: "vitalik.eth", blockchain: ethereum }) {
-      socials {
-        dappName
-        profileName
-      }
-      addresses
-    }
-  }
-`;
+import React, { useEffect, useState } from 'react';
+import { getUserByIdentity } from '@/utils/airstack';
 
 
-interface WalletData {
-  addresses: string[];
+interface Social {
+  id: string;
+  fnames: string[];
 }
 
-export default function AirstackPage() {
-  const [data, setData] = useState<WalletData | null>(null);
+// Define SocialsResponse directly in UserProfilePage.tsx
+type SocialsResponse = {
+  Socials?: {
+    Social: Social[];
+  };
+};
+
+const UserProfilePage: React.FC = () => {
+  const [user, setUser] = useState<SocialsResponse | null>(null);
+
   useEffect(() => {
-  async function fetchData() {
-    if (!AIRSTACK_API_KEY) {
-      console.error('AIRSTACK_API_KEY is not set');
-      return;
-    }
+    const fetchUserData = async () => {
+      try {
+        const userData = await getUserByIdentity();
+        setUser(userData);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
 
-    const graphQLClient = new GraphQLClient(AIRSTACK_API_URL, {
-      headers: {
-        Authorization: AIRSTACK_API_KEY ? `Bearer ${AIRSTACK_API_KEY}` : '',
-      },
-    });
+    fetchUserData();
+  }, []);
 
-    try {
-      const data = await graphQLClient.request<{ Wallet: WalletData }>(query);
-      setData(data.Wallet);
-        console.log(data);
-      
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
+  const getUserName = () => {
+    return user?.Socials?.Social[0]?.fnames[0] || 'Unknown';
+  };
 
-  fetchData();
-}, []);
   return (
     <div>
-    <h1>Integración de Airstack API en Next.js</h1>
-    {data ? (
-      <h1>{data.addresses[0]}</h1>
-    ) : (
-      <p>Cargando...</p>
-    )}
-  </div>
+      <h1>User Profile</h1>
+      {user ? (
+        <div>
+          <h2>User Name: {getUserName()}</h2>
+        </div>
+      ) : (
+        <p>Loading user data...</p>
+      )}
+    </div>
   );
-}
+};
+
+export default UserProfilePage;
