@@ -1,7 +1,7 @@
 import { gql, GraphQLClient } from 'graphql-request';
 
 const AIRSTACK_API_URL = 'https://api.airstack.xyz/graphql';
-const AIRSTACK_API_KEY = process.env.NEXT_PUBLIC_AIRSTACK_API_KEY;
+const NEXT_PUBLIC_AIRSTACK_API_KEY = process.env.NEXT_PUBLIC_AIRSTACK_API_KEY;
 
 interface Social {
   id: string;
