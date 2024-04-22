@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const AIRSTACK_API_URL = 'https://api.airstack.xyz/graphql';
 const AIRSTACK_API_KEY = process.env.NEXT_PUBLIC_AIRSTACK_API_KEY;
 
@@ -50,8 +49,11 @@ export async function fetchData(): Promise<Participant[] | null> {
         },
       }
     );
+    console.log('Full response:', response.data);
 
     const participants = response.data.data.FarcasterChannels[0]?.FarcasterChannel.participants;
+
+    console.log('Participants:', participants); // También podemos imprimir los participantes
 
     if (participants && participants.length > 0) {
       return participants.map((participant: any) => participant.participant);
