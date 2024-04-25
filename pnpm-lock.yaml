@@ -23,6 +23,9 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+      ethers:
+        specifier: ^6.12.0
+        version: 6.12.0
       frog:
         specifier: latest
         version: 0.8.6(@types/node@20.12.7)(hono@4.2.5)(typescript@5.4.5)
@@ -71,6 +74,9 @@ packages:
 
   '@adraffy/ens-normalize@1.10.0':
     resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
+
+  '@adraffy/ens-normalize@1.10.1':
+    resolution: {integrity: sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw==}
 
   '@airstack/airstack-react@0.6.3':
     resolution: {integrity: sha512-DrWWTZkGXPxL86HB0o65dFBqqIz4crWE9nENYneSoXCWUh7wQFi4MdzLia8b2eFzJUliAJTwxLjBT8zWr+kSqQ==}
@@ -517,6 +523,9 @@ packages:
   '@types/node@14.18.33':
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
 
+  '@types/node@18.15.13':
+    resolution: {integrity: sha512-N+0kuo9KgrUQ1Sn/ifDXsvg0TTleP7rIy4zOBGECxAljqvqfqpTfzx0Q1NUedOixRMBfe2Whhb056a42cWs26Q==}
+
   '@types/node@20.12.7':
     resolution: {integrity: sha512-wq0cICSkRLVaf3UGLMGItu/PtdY7oaXaI/RVU+xliKVOtRna3PRY57ZDfztpDL0n11vfymMUnXv8QwYCO7L1wg==}
 
@@ -615,6 +624,9 @@ packages:
     resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  aes-js@4.0.0-beta.5:
+    resolution: {integrity: sha512-G965FqalsNyrPqgEGON7nIx1e/OVENSgiEIzyC63haUMuvNnwIgIjMs52hlTCKhkBny7A2ORNlfY9Zu+jmGk1Q==}
 
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -987,6 +999,10 @@ packages:
   etag@1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
+
+  ethers@6.12.0:
+    resolution: {integrity: sha512-zL5NlOTjML239gIvtVJuaSk0N9GQLi1Hom3ZWUszE5lDTQE/IVB62mrPkQ2W1bGcZwVGSLaetQbWNQSvI4rGDQ==}
+    engines: {node: '>=14.0.0'}
 
   events-intercept@2.0.0:
     resolution: {integrity: sha512-blk1va0zol9QOrdZt0rFXo5KMkNPVSp92Eju/Qz8THwKWKRKeE0T8Br/1aW6+Edkyq9xHYgYxn2QtOnUKPUp+Q==}
@@ -1741,6 +1757,9 @@ packages:
   ts-toolbelt@6.15.5:
     resolution: {integrity: sha512-FZIXf1ksVyLcfr7M317jbB67XFJhOO1YqdTcuGaq9q5jLUoTikukZ+98TPjKiP2jC5CgmYdWWYs0s2nLSU0/1A==}
 
+  tslib@2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
@@ -1880,6 +1899,18 @@ packages:
       utf-8-validate:
         optional: true
 
+  ws@8.5.0:
+    resolution: {integrity: sha512-BWX0SWVgLPzYwF8lTzEy1egjhS4S4OEAHfsO8o65WOVsrnSRGaSiUaa9e0ggGlkMTtBlmOpEXiie9RUcBO86qg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   xdg-app-paths@5.1.0:
     resolution: {integrity: sha512-RAQ3WkPf4KTU1A8RtFx3gWywzVKe00tfOPFfl2NDGqbIFENQO4kqAJp7mhQjNj/33W5x5hiWWUdyfPq/5SU3QA==}
     engines: {node: '>=6'}
@@ -1915,6 +1946,8 @@ packages:
 snapshots:
 
   '@adraffy/ens-normalize@1.10.0': {}
+
+  '@adraffy/ens-normalize@1.10.1': {}
 
   '@airstack/airstack-react@0.6.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -2224,6 +2257,8 @@ snapshots:
 
   '@types/node@14.18.33': {}
 
+  '@types/node@18.15.13': {}
+
   '@types/node@20.12.7':
     dependencies:
       undici-types: 5.26.5
@@ -2402,6 +2437,8 @@ snapshots:
   acorn-walk@8.3.2: {}
 
   acorn@8.11.3: {}
+
+  aes-js@4.0.0-beta.5: {}
 
   agent-base@6.0.2:
     dependencies:
@@ -2723,6 +2760,19 @@ snapshots:
   estree-walker@2.0.2: {}
 
   etag@1.8.1: {}
+
+  ethers@6.12.0:
+    dependencies:
+      '@adraffy/ens-normalize': 1.10.1
+      '@noble/curves': 1.2.0
+      '@noble/hashes': 1.3.2
+      '@types/node': 18.15.13
+      aes-js: 4.0.0-beta.5
+      tslib: 2.4.0
+      ws: 8.5.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   events-intercept@2.0.0: {}
 
@@ -3490,6 +3540,8 @@ snapshots:
 
   ts-toolbelt@6.15.5: {}
 
+  tslib@2.4.0: {}
+
   tslib@2.6.2: {}
 
   typescript@4.9.5: {}
@@ -3607,6 +3659,8 @@ snapshots:
   wrappy@1.0.2: {}
 
   ws@8.13.0: {}
+
+  ws@8.5.0: {}
 
   xdg-app-paths@5.1.0:
     dependencies:

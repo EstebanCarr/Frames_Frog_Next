@@ -1,35 +1,31 @@
-// pages/farcater/farcaterchanel.tsx
-'use client'
-import { fetchData } from '@/app/farcater/farcaterchanel'; // Ajusta la ruta según la ubicación de tu función fetchData
 import { useEffect, useState } from 'react';
+import { getContractMetadata } from '../utils/contractUtils'; // Ajusta la ruta según donde hayas colocado el archivo
 
-const FarcaterChannelPage = () => {
-  const [participants, setParticipants] = useState<any[]>([]); // Estado para almacenar los participantes
+export default function Home() {
+    const [metadata, setMetadata] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const getParticipants = async () => {
-      const data = await fetchData();
-      setParticipants(data || []);
-    };
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const contractMetadata = await getContractMetadata();
+                setMetadata(JSON.stringify(contractMetadata, null, 2));
+            } catch (err) {
+                setError(err.message);
+            }
+        }
 
-    getParticipants();
-  }, []);
+        fetchData();
+    }, []);
 
-  return (
-    <div>
-      <h1>Farcater Channel</h1>
-      <ul>
-        {participants.map((participant, index) => (
-          <li key={index}>
-            <h2>{participant.participant.profileName}</h2>
-            <p>User ID: {participant.participant.fid}</p>
-            <p>User Associated Addresses: {participant.participant.userAssociatedAddresses}</p>
-            <p>Follower Count: {participant.participant.followerCount}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
-export default FarcaterChannelPage;
+    return (
+        <div>
+            <h1>Metadata del Contrato</h1>
+            <pre>{metadata}</pre>
+        </div>
+    );
+}
